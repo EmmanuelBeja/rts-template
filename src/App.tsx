@@ -1,4 +1,4 @@
-import RoutesConfig from './app/utils/router/RoutesConfig';
+import RoutesConfig from './app/router/RoutesConfig';
 
 const App: React.FC = () => <RoutesConfig />;
 

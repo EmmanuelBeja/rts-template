@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../../../components/Card";
 import Verified from '@mui/icons-material/Verified';
 
-import { useActions } from '../../../app/utils/hooks/useActions';
+import { useActions } from '../../../app/hooks/useActions';
 
 interface Person {
   id?: number;

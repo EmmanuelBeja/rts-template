@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 import Account from './components/Account';
 import Contact from './components/Contact';
@@ -6,22 +6,23 @@ import Password from './components/Password';
 import Address from './components/Address';
 import Payment from './components/Payment';
 import Tax from './components/Tax';
+import Preloader from '../../components/Preloader';
 
-import { useActions } from '../../app/utils/hooks/useActions';
-import { useTypedSelector } from '../../app/utils/hooks/useTypedSelector';
+import { useActions } from '../../app/hooks/useActions';
+import { useTypedSelector } from '../../app/hooks/useTypedSelector';
 
 const Settings: React.FC  = () => {
   const { getPerson, getAddress, getVerification } = useActions();
   const { person, error, loading } = useTypedSelector(state => state.settings);
   const userId = '1';
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getPerson(userId);
     getAddress(userId);
     getVerification(userId);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (loading) { return <div>Loading...</div>}
+  if (loading) { return <Preloader />}
   if (error) { return <div>{error}</div> }
 
   return (

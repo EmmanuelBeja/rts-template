@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from '../../../pages/Home';
-import Settings from '../../../pages/Settings';
+import Home from '../../pages/Home';
+import Settings from '../../pages/Settings';
 
 const RoutesConfig: React.FC  = () => {
 return (         

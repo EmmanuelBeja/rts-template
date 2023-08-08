@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import settingsReducer from '../../../pages/Settings/reducer';
+import settingsReducer from '../../pages/Settings/reducer';
 
 const reducers = combineReducers({
   settings: settingsReducer
