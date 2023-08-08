@@ -35,6 +35,7 @@ interface Props {
 const Contact: React.FC<Props>  = ({ person, loading }) => {
   const [inputs, setInputs] = useState({ email: '' });
   const [edit, setEdit] = useState<boolean>(false);
+  const [emailError, setEmailError] = useState<string>('');
   const { updatePerson } = useActions();
 
   useEffect(() => {
@@ -45,10 +46,20 @@ const Contact: React.FC<Props>  = ({ person, loading }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    if (name === 'email') {
+      // validate email using regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        setEmailError('Invalid email address.');
+      } else {
+        setEmailError('');
+      }
+    }
     setInputs(inputs => ({ ...inputs, [name]: value }));
   }
 
   const handleSubmit = () => {
+    if (emailError) return;
     updatePerson({ ...person, email: inputs.email });
     setEdit(!edit);
   }
@@ -77,9 +88,12 @@ const Contact: React.FC<Props>  = ({ person, loading }) => {
         <div className="w-1/3 text-slate-400">Email</div>
         <div>
           {edit ? (
+            <>
             <div className="flex gap-2">
               <input
-                className="border border-custom-primary bg-white text-primary rounded px-2 py-1"
+                className={
+                  `border rounded px-1 py-0 outline-none ${emailError ? 'border-red-500 text-error bg-red-100' : 'border-custom-primary text-primary bg-white'}`
+                }
                 type="email"
                 name="email"
                 value={inputs.email}
@@ -93,6 +107,8 @@ const Contact: React.FC<Props>  = ({ person, loading }) => {
                   {loading ? 'Loading...' : 'SUBMIT'}
               </button>
             </div>
+            {emailError && <div className="text-xs text-red-600 animate-pulse">{emailError}</div>}
+            </>
           ) : (
             <div>{person?.email}</div>
           )}
