@@ -28,13 +28,13 @@ const Settings: React.FC  = () => {
     <>
     <div className="px-14 py-5">
       <div className="font-bold text-custom-dark text-2xl">Settings</div>
-      <div className="flex justify-between gap-4 mt-5">
-        <div className="w-1/2">
+      <div className="md:flex md:justify-between md:gap-4 mt-5">
+        <div className="md:w-1/2 sm:w-full">
           <Account person={person} />
           <Contact person={person} loading={loading} />
           <Password />
         </div>
-        <div className="w-1/2">
+        <div className="md:w-1/2 sm:w-full">
           <Address person={person} />
           <Payment />
           <Tax />

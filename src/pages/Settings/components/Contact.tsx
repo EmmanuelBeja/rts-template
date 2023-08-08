@@ -110,7 +110,7 @@ const Contact: React.FC<Props>  = ({ person, loading }) => {
             {emailError && <div className="text-xs text-red-600 animate-pulse">{emailError}</div>}
             </>
           ) : (
-            <div>{person?.email}</div>
+            <div className="cursor-pointer" onMouseDown={() => setEdit(!edit)}>{person?.email}</div>
           )}
         </div>
       </div>
